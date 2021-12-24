@@ -1,0 +1,33 @@
+.gameView {
+    border: 1px solid black;
+    /*background-color: antiquewhite;*/
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    background: url("https://c1.wallpaperflare.com/preview/179/825/159/artwork-battleships-british-fleets.jpg");
+    background-size: cover;
+}
+
+.gamePanel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-grow: 2;
+
+}
+
+.menuPanel {
+    min-width: 200px;
+    min-height: 800px;
+    background-color: white;
+    border-right: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

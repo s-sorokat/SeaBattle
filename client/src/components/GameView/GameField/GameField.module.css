@@ -1,0 +1,47 @@
+.yourField {
+    /*background-color: blue;*/
+    min-height: 300px;
+    min-width: 300px;
+}
+
+.field{
+    /*background-color: red;*/
+    min-height: 300px;
+    min-width: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.table {
+    width: 50%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.table::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.col {
+    padding: 0;
+    flex-grow: 1;
+}

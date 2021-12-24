@@ -1,0 +1,15 @@
+.cell {
+    min-height: 30px;
+    min-width: 30px;
+    border: 1px solid black;
+    user-select: none;
+    margin: 0;
+}
+
+.free {
+    background-color: white;
+
+}
+.busy {
+    background-color: #444;
+}

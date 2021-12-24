@@ -1,0 +1,23 @@
+.ship {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+
+    background-color: red;
+    width: max-content;
+}
+
+.vertical {
+    flex-direction: column;
+}
+
+.ship:hover {
+    animation:spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform:scale(30);
+    }
+}
