@@ -1,20 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from './GameField.module.css'
 import Cell from "./Cell/Cell"
 
-class GameField extends React.Component {
-    constructor(props) {
-        super(props);
-        let ships = props.ships ?? [];
-
-        this.state = {
+function GameField (props){
+        const ships = props.ships ?? [];
+        const [state, setState] = useState({
             ships,
             owner: props.owner,
-        }
-    }
+        })
 
-    render() {
-        let occupied = this.props.field;
+        let occupied = props.field;
         let coords = Array.from(Array(10).keys());
         let cells = coords.map(x => {
             return <div key={`row-${x}`} className={s.row}>
@@ -25,7 +20,7 @@ class GameField extends React.Component {
                                 x={x}
                                 y={y}
                                 isOccupied={occupied[x][y].isOccupied}
-                                onDropShip={this.props.onDropShip}
+                                onDropShip={props.onDropShip}
                             />
                         </div>
                     })
@@ -34,13 +29,13 @@ class GameField extends React.Component {
 
         })
 
-        return <div className={this.state.owner ? s.field : s.field}>
+        return (<div className={state.owner ? s.field : s.field}>
             <div className={s.table}>
                 {cells}
             </div>
-        </div>
-    }
+        </div>)
 }
+
 
 
 

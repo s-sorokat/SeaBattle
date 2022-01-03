@@ -14,11 +14,6 @@
     background-color: #444;
 }
 
-.cell:hover {
-    background-image: url(https://cdn.frankerfacez.com/emoticon/165784/4);
-    background-size: 100% 100%;
-    /*background-color: #ddd;*/
-}
 
 .busy:hover {
     background-color: #111;

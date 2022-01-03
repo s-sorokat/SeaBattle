@@ -1,3 +1,5 @@
+import { calculateOccupied, checkPlace, initField } from "./common/checkFunc";
+
 let initialState = {
     unusedShips: [
         {id: 0, size: 4, isHorizontal: false},
@@ -12,13 +14,12 @@ let initialState = {
         {id: 9, size: 1, isHorizontal: true},
     ],
     placedShips: [
-        // {id: 1,x: 1, y: 1, isHorizontal: true, size: 3},
-        // {id: 1,x: 5, y: 5, isHorizontal: false, size: 3},
     ],
     cellDragNumber: 0,
     selectedShip: 0,
     yourField: initField(),
     enemyField: initField(),
+  
 }
 
 
@@ -27,19 +28,20 @@ const GameViewReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case 'PLACE-SHIP': {
-
             const shipIndex = state.unusedShips.findIndex(value => value.id === state.selectedShip)
             const ship = state.unusedShips[shipIndex]
-
             ship.x = action.date.x;
             ship.y = action.date.y;
-            offsetShip(ship, state.cellDragNumber);
-            //TODO
-            //TODO
+            let res = checkPlace(ship, state.cellDragNumber,state.yourField);
+           if(res==true){
             let stateCopy = {...state, unusedShips: [...state.unusedShips], placedShips: [...state.placedShips, ship]}
             stateCopy.unusedShips.splice(shipIndex, 1);
             stateCopy.yourField = calculateOccupied(stateCopy.placedShips)
             return stateCopy;
+        }
+        return state
+
+            
         }
         case 'ROTATE-SHIP': {
             let stateCopy = {...state}
@@ -65,46 +67,6 @@ const GameViewReducer = (state = initialState, action) => {
         }
     }
     return state;
-}
-
-function offsetShip(ship, offset) {
-    if (!ship.isHorizontal) {
-        ship.x -= offset;
-        ship.x = Math.min(ship.x, 9);
-        ship.x = Math.max(ship.x, 0);
-    } else {
-        ship.y -= offset;
-        ship.y = Math.min(ship.y, 9);
-        ship.y = Math.max(ship.y, 0);
-    }
-}
-
-function initField() {
-    let coords = Array.from(Array(10).keys());
-    return coords.map(x => {
-        return coords.map(y => {
-            return {x, y, isOccupied: false}
-        })
-    })
-}
-
-function calculateOccupied(ships) {
-    let cells = initField()
-
-    ships.map(ship => {
-        console.log(ship)
-
-        let x = ship.x;
-        let y = ship.y;
-        let size = ship.size;
-        while (size > 0) {
-            cells[x][y] = {...cells[x][y], isOccupied: true}
-            size--;
-            ship.isHorizontal ? y++ : x++;
-        }
-    })
-
-    return cells;
 }
 
 export default GameViewReducer;

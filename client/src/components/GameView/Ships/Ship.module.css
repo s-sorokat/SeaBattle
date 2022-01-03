@@ -15,9 +15,3 @@
 .ship:hover {
     animation:spin 4s linear infinite;
 }
-
-@keyframes spin {
-    100% {
-        transform:scale(30);
-    }
-}

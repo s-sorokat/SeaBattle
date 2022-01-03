@@ -2,48 +2,36 @@ import React from 'react'
 import Cell from "./ShipCell/ShipCell"
 import s from './Ship.module.css'
 
-class Ship extends React.Component {
-    constructor(props) {
-        super(props);
+function Ship(props){
 
-    }
-
-    render() {
         let blocks = [];
-        for (let i = 0; i < this.props.ship.size; i++) {
+        for (let i = 0; i < props.ship.size; i++) {
             blocks = [...blocks, <Cell
-                onSelectShipCell={this.props.onSelectShipCell}
+                onSelectShipCell={props.onSelectShipCell}
                 key={i}
                 id={i}
                 isOccupied={true}
-                onSelect={this.changeSelected}
             />]
 
         }
 
         let classes = [s.ship];
-        if (!this.props.ship.isHorizontal) classes.push(s.vertical)
+        if (!props.ship.isHorizontal) classes.push(s.vertical)
 
-        return <div
+        return (<div
             className={classes.join(" ")}
-            key={this.props.ship.id}
+            key={props.ship.id}
             draggable="true"
             onDragStart={() => {
-
-                this.props.selectShip(this.props.ship.id);
-                //this.props.onDrag(this.props.ship)
+                props.selectShip(props.ship.id);
             }}
-            onClick={(event) => {
-                if (event.buttons === 0) this.props.rotateShip(this.props.ship.id)
+            onDoubleClick={(event) => {
+                if (event.buttons === 0) props.rotateShip(props.ship.id)
             }}
         >
             {blocks}
-        </div>
-    }
+        </div>)
 
-    changeSelected(id) {
-
-    }
 }
 
 export default Ship

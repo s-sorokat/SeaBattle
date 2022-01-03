@@ -3,31 +3,20 @@ import GameField from "./GameField/GameField"
 import s from './GameView.module.css'
 import Ship from "./Ships/Ship"
 
-class GameView extends React.Component {
+function GameView(props){
+        let unusedShips = props.GameViewPage.unusedShips;
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-
-        let unusedShips = this.props.GameViewPage.unusedShips;
-
-        let enemyShips = [
-            // {x: 1, y: 5, isHorizontal: false, size: 4},
-        ]
-
-        return <div className={s.gameView}>
+        return (<div className={s.gameView}>
             <div className={s.menuPanel}>
                 {
                     unusedShips.map(ship => {
                         return <Ship
                             key={`ship-${ship.id}`}
                             ship={ship}
-                            cellDragNumber={this.props.GameViewPage.cellDragNumber}
-                            onSelectShipCell={this.props.onSelectShipCell}
-                            selectShip={this.props.selectShip}
-                            rotateShip={this.props.rotateShip}
+                            cellDragNumber={props.GameViewPage.cellDragNumber}
+                            onSelectShipCell={props.onSelectShipCell}
+                            selectShip={props.selectShip}
+                            rotateShip={props.rotateShip}
 
                         />
                     })
@@ -37,18 +26,18 @@ class GameView extends React.Component {
                 <GameField
 
                     owner={true}
-                    field={this.props.GameViewPage.yourField}
-                    onDropShip={this.props.onDropShip}
+                    field={props.GameViewPage.yourField}
+                    onDropShip={props.onDropShip}
                     // ships={ships}
                 />
                 <GameField
                     owner={false}
-                    field={this.props.GameViewPage.enemyField}
+                    field={props.GameViewPage.enemyField}
                     // ships={enemyShips}
                 />
             </div>
         </div>
-    }
+    )
 
 
 }

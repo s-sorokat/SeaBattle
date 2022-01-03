@@ -6,7 +6,6 @@ export default function ShipCell(props) {
     return <div
         className={classes}
         onMouseDown={() => {
-            console.log(`Selected ${props.id}`)
             props.onSelectShipCell(props.id)
             if (props.onSelect) props.onSelect(props.id);
         }}
